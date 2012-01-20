@@ -1,4 +1,6 @@
 <%= template_include_tag 'skin' %>
+<%= link_to("Preview", "#", :id => 'preview_link')%>
+<div id="preview"></div>
 
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
@@ -19,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :rows => 5 %>
   </div>
   <div class="field">
     <%= f.label :published %><br />
