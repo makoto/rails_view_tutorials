@@ -1,33 +1,42 @@
 <%= template_include_tag 'skin' %>
-<%= link_to("Preview", "#", :id => 'preview_link')%>
-<div id="preview"></div>
 
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="content">
+  <div class="left">
+    <%= form_for(@post) do |f| %>
+      <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :body %><br />
+        <%= f.text_area :body, :rows => 5 %>
+      </div>
+      <div class="field">
+        <%= f.label :published %><br />
+        <%= f.check_box :published %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+
   </div>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :rows => 5 %>
+
+  <div class="right">
+    <%= link_to("Preview", "#", :id => 'preview_link')%>
+    <div id="preview"></div>
   </div>
-  <div class="field">
-    <%= f.label :published %><br />
-    <%= f.check_box :published %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+
