@@ -4,6 +4,12 @@
 
 
 $ ->
+  
+  findPost = (id) ->
+    posts = window.posts.filter (p) ->
+      p.id == parseInt(id)
+    posts[0]
+  
   app = Davis ->
     @get '/posts', (req) ->
       $('body').html(poirot.list({posts:window.posts}))
@@ -21,15 +27,13 @@ $ ->
       $('#preview').html poirot.skin(post)
 
     @get '/posts/:id/edit', (req) ->
-      posts = window.posts.filter (p) ->
-        p.id == parseInt(req.params.id)
+      post = findPost(req.params.id)
 
-      $('body').html(poirot.form(posts[0]))
+      $('body').html(poirot.form(post))
 
     @get '/posts/:id', (req) ->
-      posts = window.posts.filter (p) ->
-        p.id == parseInt(req.params.id)
+      post = findPost(req.params.id)
         
-      $('body').html(poirot.skin(posts[0]))
+      $('body').html(poirot.skin(post))
 
   app.start();
