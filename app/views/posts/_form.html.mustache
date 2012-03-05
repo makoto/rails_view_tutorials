@@ -1,0 +1,35 @@
+<h1>New post</h1>
+
+<div class="content">
+  <div class="left">
+
+  <form accept-charset="UTF-8" action="/posts" class="new_post" id="new_post" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="authenticity_token" type="hidden" value="gffuzLXIJFWs0RjWXTp7lI9S7hXTikKtC1w9LoutGqA="></div>
+
+  <div class="field">
+    <label for="post_title">Title</label><br>
+    <input id="post_title" name="post[title]" size="30" type="text" value={{title}}>
+  </div>
+  <div class="field">
+    <label for="post_body">Body</label><br>
+    <textarea cols="40" id="post_body" name="post[body]" rows="5">{{body}}</textarea>
+  </div>
+  <div class="field">
+    <label for="post_published">Published</label><br>
+    <input name="post[published]" type="hidden" value="0"><input id="post_published" name="post[published]" type="checkbox" value={{published}}>
+  </div>
+  <div class="actions">
+    <input name="commit" type="submit" value="Create Post">
+  </div>
+</form>
+
+  </div>
+
+  <div class="right">
+    <a href="/posts/preview" id="preview_link">Preview</a>
+    <div id="preview"></div>
+  </div>
+</div>
+
+<a href="/posts">Back</a>
