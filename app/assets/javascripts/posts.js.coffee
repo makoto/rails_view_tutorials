@@ -9,13 +9,16 @@ $ ->
     posts = window.posts.filter (p) ->
       p.id == parseInt(id)
     posts[0]
+    
+  display = (action) ->
+    $('.content').html(action).css({display:'none'}).show('slow')
   
   app = Davis ->
     @get '/posts', (req) ->
-      $('body').html(poirot.list({posts:window.posts}))
+      display(poirot.list({posts:window.posts}))
 
     @get '/posts/new', (req, one, two) ->
-      $('body').html(poirot.form())
+      display(poirot.form())
 
     @get '/posts/preview', (req) ->
       $form = $('form')
@@ -28,12 +31,10 @@ $ ->
 
     @get '/posts/:id/edit', (req) ->
       post = findPost(req.params.id)
-
-      $('body').html(poirot.form(post))
+      display(poirot.form(post))
 
     @get '/posts/:id', (req) ->
       post = findPost(req.params.id)
-        
-      $('body').html(poirot.skin(post))
+      display(poirot.skin(post))
 
   app.start();
